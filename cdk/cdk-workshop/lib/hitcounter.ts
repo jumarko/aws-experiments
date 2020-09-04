@@ -9,7 +9,7 @@ export interface HitCounterProps {
 }
 
 export class HitCounter extends cdk.Construct {
-    /** allows accessing the counter function */
+    /** allows accessing the counter function - this is the hitcounter lambda function*/
     public readonly handler: lambda.Function;
 
     constructor(scope: cdk.Construct, id: string, props: HitCounterProps) {
