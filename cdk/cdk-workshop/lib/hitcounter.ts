@@ -33,5 +33,9 @@ export class HitCounter extends cdk.Construct {
 
         // grant the lambda role read/write permissions to our table
         table.grantReadWriteData(this.handler);
+
+        // this isn't in the tutorial but we need to grant invoke too otherwise it fails
+        // ERROR Invoke Error {"errorType":"AccessDeniedException","errorMessage":"User: arn:aws:sts::504003789983:assumed-role/CdkWorkshopStack-HelloHitCounterHitCounterHandlerS-1M9KFL06AAJWX/CdkWorkshopStack-HelloHitCounterHitCounterHandlerD-BLRVLBPDD8AP is not authorized to perform: lambda:InvokeFunction on resource: arn:aws:lambda:eu-west-1:504003789983:function:CdkWorkshopStack-HelloHandler2E4FBA4D-QY17DX4E5FKI"
+        props.downstream.grantInvoke(this.handler);
     }
 }
